@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    
+   .articles
+    h2 Articles 
+    <hr>
+     ul
+        each article in articleList
+           li Title: #{article.title}
+           li Categorie: #{article.category}
+           li Descriere: #{article.content}
+           hr
