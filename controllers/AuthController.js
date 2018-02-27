@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/Users');
 
-exports.home = (req, res) => {
-    res.render('index', { user: req.user });
-};
 
 exports.register = (req, res) => {
     res.render('account/register', {

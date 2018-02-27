@@ -51,7 +51,6 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.get('/', auth.home);
 app.get('/register', auth.register);
 app.post('/register', auth.doRegister);
 app.get('/login', auth.login);
