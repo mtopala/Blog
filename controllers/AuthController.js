@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const passport = require("passport");
 const User = require('../models/Users');
 
 
@@ -8,23 +9,17 @@ exports.register = (req, res) => {
     })
 }
 
-exports.doRegister = (req, res) => {
-    user.register(new User ({ 
-        username: req.body.username,
-        name: req.body.name,
-
-    }),
-     req.body.password, (err, user) => {
-         if(err) {
-             return res.render('account/register', { user: user });
-         }
-
-         passport.authenticate('local')(req, res, () => {
-            res.redirect('/');
-         });
-     }
-  )
-}
+exports.doRegister = function(req, res) {
+    User.register(new User({ username : req.body.username, name: req.body.name }), req.body.password, function(err, user) {
+      if (err) {
+        return res.render('account/register', { user : user });
+      }
+  
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/');
+      });
+    });
+  };
 
 exports.login = (req, res) => {
     res.render('account/login');
