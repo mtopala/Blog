@@ -6,17 +6,19 @@
 
 # Getting Started
 
-#Get the latest snapshot
+```bash
+# Get the latest snapshot
 git clone https://github.com/synch404/Blog
 
-#Change directory
-cd project
+# Change directory
+cd myproject
 
-#Install NPM dependencies
+# Install NPM dependencies
 npm install
 
-#Run MongoDB
+# Run MongoDB
 mongo
 
 # Then simply start your app
-nodemon
+node app.js
+```
