@@ -20,5 +20,5 @@ npm install
 mongo
 
 # Then simply start your app
-node app.js
+nodemon
 ```
