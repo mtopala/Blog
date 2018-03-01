@@ -21,10 +21,11 @@ html
               li
                 a(href='/login') Login
               li
-                a(href='/register') Register
+                a(href='/signup') Register
+                
             if (user)
               li
-                a Welcome #{user.name}
+                a Welcome #{user}
               li
                 a(href='/logout') Logout
 

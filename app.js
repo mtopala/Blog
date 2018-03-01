@@ -1,13 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const expressValidator = require('express-validator');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const path = require('path');
-
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -32,7 +31,7 @@ mongoose.connection.once('open',() => {
 
 const articleController = require('./controllers/article.js');
 const homeController = require('./controllers/home.js');
-const auth = require('./controllers/AuthController.js');
+const user = require('./controllers/auth.js');
 
 // Express configuration
 app.set('view engine', 'pug');
@@ -40,22 +39,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
-app.use(require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
-}));
 app.use(passport.initialize());
-app.use(passport.session());
 // Set Static
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.get('/register', auth.register);
-app.post('/register', auth.doRegister);
-app.get('/login', auth.login);
-app.post('/login', auth.doLogin);
-app.get('/logout', auth.logout);
+app.get('/signup', user.getRegisterForm);
+app.post('/signup', user.doRegister);
+app.get('/login', user.getLoginForm);
+app.post('/login', user.doLogin);
+
 
 app.get('/', homeController.index);
 app.get('/articles/article-form', articleController.getArticleForm );
