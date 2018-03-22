@@ -1,0 +1,11 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+
+<h2>Categories</h2>
+<hr>
+<ul>
+    <% categoryList.forEach( (category) =>  { %>
+    <li><a href="/categories/<%= category.id %>"><%= category.name %></a></li>
+     <% }); %>
+</ul>
+<% include ../partials/footer %>

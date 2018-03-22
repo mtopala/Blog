@@ -1,0 +1,16 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+
+<h2>Articles</h2>
+<hr>
+
+    <% articleList.forEach(function(article) { %>
+     <article>
+           Title: <%= article.title %>
+           Category: <%= article.CategoryId %>
+           Descriere: <%= article.content %>
+           Author: <%= article.UserId %>
+     </article>
+     
+     <% }); %>
+<% include ../partials/footer %>

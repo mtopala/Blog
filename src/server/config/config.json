@@ -1,0 +1,45 @@
+{
+
+    "development": {
+
+        "username": "blog-user",
+
+        "password": "UTMfcim.2017@",
+
+        "database": "blog",
+
+        "host": "127.0.0.1",
+
+        "dialect": "mysql"
+
+    },
+
+    "test": {
+
+        "username": "",
+
+        "password": null,
+
+        "database": "",
+
+        "host": "",
+
+        "dialect": "mysql"
+
+    },
+
+    "production": {
+
+        "username": "",
+
+        "password": null,
+
+        "database": "",
+
+        "host": "127.0.0.1",
+
+        "dialect": "mysql"
+
+    }
+
+}
