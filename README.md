@@ -1,7 +1,7 @@
 # Blog with Express,REST
 
 # Requirements
-- [MongoDB](https://www.mongodb.org/downloads)
+- Mysql
 - [Node.js 6.0+](http://nodejs.org)
 
 # Getting Started
@@ -15,9 +15,6 @@ cd myproject
 
 # Install NPM dependencies
 npm install
-
-# Run MongoDB
-mongo
 
 # Then simply start your app
 nodemon
