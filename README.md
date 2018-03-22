@@ -1,4 +1,4 @@
-# Blog with Express,REST
+# Blog
 
 # Requirements
 - Mysql
