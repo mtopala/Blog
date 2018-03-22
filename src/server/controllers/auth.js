@@ -26,4 +26,5 @@ auth.logout = (req, res) => {
 }
 
 
+
 module.exports = auth;

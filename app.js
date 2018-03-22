@@ -56,13 +56,14 @@ app.use((req, res, next) => {
 
 
 //Routes
-const authRoute = require('./src/server/routes/auth.js')(app,passport);
+const authRoute = require('./src/server/routes/auth.js');
 const homeRoute = require('./src/server/routes/home');
 const articleRoutes = require('./src/server/routes/article');
 const categoryRoutes = require('./src/server/routes/category');
 
 
 app.use('/',homeRoute);
+app.use(authRoute);
 app.use('/articles',articleRoutes);
 app.use('/categories',categoryRoutes);
 
