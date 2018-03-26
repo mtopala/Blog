@@ -39,12 +39,11 @@ articleMethods.postArticle= (req, res) => {
          .catch(err => {
             console.log(err);
          })
-         res.redirect('/');
+         res.redirect('/');;
     } 
 };
 
 articleMethods.getArticles = (req, res) => {
-
     db.Article.findAll()
        .then(articles => {
             res.json(articles);
