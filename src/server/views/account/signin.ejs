@@ -1,19 +1,16 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
 
-<form action="/signin" method="POST">
-  <div class="row" style="width: 500px; margin: 0 30%">
+<form action="/signin" method="POST" style="margin: 100 30%; width: 500px;">
         <div class="form-group">
-          <label>Username</label>
-          <input type="text" class="form-control" name="username">
-      </div>
-      <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-control" name="password">
-      </div>
-
-      <button type="submit" class="btn btn-warning btn-lg">Signin</button>
-  </div>
+          <label for="username">Username:</label>
+          <input type="username" class="form-control" name="username" id="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" name="password" id="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Signin</button>
   
 </form>
 

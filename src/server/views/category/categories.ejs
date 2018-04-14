@@ -1,11 +1,22 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
-
-<h2>Categories</h2>
-<hr>
-<ul>
-    <% categoryList.forEach( (category) =>  { %>
-    <li><a href="/categories/<%= category.id %>"><%= category.name %></a></li>
-     <% }); %>
-</ul>
+  <!-- Categories Widget -->
+  <div class="container" style="margin-top: 100px; width: 400px;">
+      <div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+            <ul class="list-unstyled mb-0">
+                <% categoryList.forEach( (category, index, array) =>  { %>
+                    <li><a href="/categories/<%= category.name %>"><%= category.name %></a></li>
+                <% }); %> 
+            </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+  
 <% include ../partials/footer %>
+   

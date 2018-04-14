@@ -1,0 +1,25 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+  <form action="/articles/article-form" method="POST" style="margin: 100 30%; width: 500px;">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="title" class="form-control" name="title" id="title">
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+          <select class="category" data-style="btn-info" name="category">
+            <% categoriesList.forEach(function(category) { %>
+               <option name="category" value="<%= category.id %>"><%= category.name %></option>
+            <% }); %>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea class="form-control" name = "content" id="content" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send</button>
+
+</form>
+
+  <% include ../partials/footer %>

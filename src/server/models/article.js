@@ -20,6 +20,7 @@ module.exports = (sequelize, Sequelize) => {
     Article.associate = models => {
        models.Article.belongsTo(models.User);
        models.Article.belongsTo(models.Category); 
+       models.Article.hasMany(models.Comment); 
     };
 
     return Article;

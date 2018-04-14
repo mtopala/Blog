@@ -1,86 +1,35 @@
 const db = require('../models/index');
 const categoryMethods = {};
 
-categoryMethods.getCategoryForm = (req, res) => {
-    res.render('category/add-category', {
-       'title': 'Some title' 
-    }) 
-}
-
-categoryMethods.createCategories = (req, res) => {
-
-    req.checkBody('name', 'Name is required').notEmpty();  
-    const errors = req.validationErrors();
-
-    console.log(req.body.name);
-
-    if(errors)
-    {
-        console.log('Categories Errors');
-
-    } else {
+categoryMethods.postCategory = name => {
+ 
      db.sequelize.sync()
        .then(() => {
-        db.Category.create({
-              name: req.body.name
+           db.Category.create({
+              name: name.toLowerCase()
             })
       })
       .catch(err => {
          console.log(err);
-      }) 
-      res.redirect('/');
-    }
-   
+      })    
 }
 
-categoryMethods.getCategories = (req, res) => {
-    db.Category.findAll()
-    .then(categories => {
-         res.json(categories);
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        })
-    })
-};
+categoryMethods.getCategories = () => db.Category.findAll()
 
-categoryMethods.getArticlesByCategory = (req, res) => {
-  
-    const id = req.params.id;
 
-    db.Article.findAll({
+categoryMethods.getArticlesByCategory = name => 
+
+    db.Category.findAll({
+        include: [
+            {
+                model: db.Article,
+                include: [db.User]
+            }
+        ],
         where: {
-            CategoryId: id
+            name: name
         }
     })
-       .then(articles => {
-            res.json(articles);
-       })
-       .catch(err => {
-           res.status(500).json({
-               error: err
-           })
-       })
-};
 
-categoryMethods.deleteCategories = (req, res) => {
-   db.Category.findOne({
-       where: {
-           'name': req.body.name
-       }
-   }).complete((err, category) => {
-       if(err) {
-           console.log(err);
-       }
-       if(category) {
-           category.updateAttributes({
-               'name': req.body.name
-           }).success(category => {
-              return category;
-           })
-       }
-   });
-}
 
 module.exports = categoryMethods;

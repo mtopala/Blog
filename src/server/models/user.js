@@ -23,6 +23,10 @@ module.exports = (sequelize, Sequelize)  => {
       }
   });
 
+  User.associate = models => {
+    models.User.hasMany(models.Article);
+    models.User.hasMany(models.Comment); 
+}
 return User;
 
 };

@@ -1,58 +1,38 @@
 const db = require('../models/index');
-
 const articleMethods = {};
 
-articleMethods.getArticleForm  = (req, res) => {
+articleMethods.getArticleForm  = () => db.Category.findAll()
 
-db.Category.findAll()
-    .then(categories => {
-         res.render('articles/article-form', {
-             'categoriesList': categories
-        });
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        })
-    }) 
-}
+articleMethods.postArticle = (res, title, content, category, userId) => 
 
-
-articleMethods.postArticle= (req, res) => {
-    req.checkBody('title', 'Title is required').notEmpty();
-    req.checkBody('content', 'Content is required').notEmpty();
-    req.checkBody('category', 'Category is required').notEmpty();
-    
-    const errors = req.validationErrors();
-    if(errors) {
-        console.log('Articles Errors');
-    } else {
-        db.sequelize.sync()
+    db.sequelize.sync()
         .then(() => {
            db.Article.create({
-               title: req.body.title,
-               content: req.body.content,
-               CategoryId: req.body.category,
-               UserId: req.user.id
+               title: title,
+               content: content,
+               CategoryId: category,
+               UserId: userId
                })
-         }) 
-         .catch(err => {
-            console.log(err);
-         })
-         res.redirect('/');;
-    } 
-};
+            res.redirect('/articles');
+         })  
 
-articleMethods.getArticles = (req, res) => {
-    db.Article.findAll()
-       .then(articles => {
-            res.json(articles);
-       })
-       .catch(err => {
-           res.status(500).json({
-               error: err
-           })
-       })
-};
+
+articleMethods.getArticles = () => 
+    db.Article.findAll({
+      include: [db.User]
+    })
+
+articleMethods.getArticleById = (id) => 
+     db.Article.findById(id, {
+        include: [
+            {
+                model: db.User
+            },
+            {
+                 model: db.Comment,
+                 include: [db.User]
+            }
+        ],
+    })
 
 module.exports = articleMethods;

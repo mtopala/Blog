@@ -1,16 +1,10 @@
-const authController = require('../controllers/auth');
+const authController = require('../../controllers/auth');
+const login = require('../../config/handler');
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-    const isLoggedIn = (req, res, next) => {
-        if (req.isAuthenticated()){
-            return next();
-        }
-        res.redirect('/signin'); 
-    }
-
-    router.get('/dashboard',isLoggedIn, authController.dashboard);
+    router.get('/dashboard',login, authController.dashboard);
 
     router.get('/signup', authController.signup);
  

@@ -16,15 +16,9 @@ module.exports = (sequelize, Sequelize) => {
         }
     });
     
-    // Category.associate = models => {
-    //     models.Category.hasMany(models.Article, {
-    //         onDelete: "CASCADE",
-    //         foreignKey: {
-    //             allowNull: false
-    //         },
-    //         constraints: false
-    //      });
-    //  };
+    Category.associate = models => {
+        models.Category.hasMany(models.Article);
+    }
    
     return Category;
 }

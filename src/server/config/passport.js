@@ -120,6 +120,7 @@ passport.use('local-signin', new LocalStrategy(
     function(req, username, password, done) {
  
         var User = user;
+    
         var isValidPassword = (userpass, password) => {
  
             return bCrypt.compareSync(password, userpass);
