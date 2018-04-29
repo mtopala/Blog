@@ -37,10 +37,12 @@ router.route('/:id')
    .get((req, res, next) => articleController
      .getArticleById(req.params.id)
       .then(article => {
+        const articles = [];
+          articles.push(article);
+        
          res.render('articles/article', {
-           'articleList': article
-         })
- 
+           'articles': articles
+         }) 
         })
          .catch(err => {
             res.status(500).json({
